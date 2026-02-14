@@ -1,0 +1,753 @@
+/* ========================================
+   ROMANTIC WEBSITE - DARK PINK AESTHETIC
+   ======================================== */
+
+/* === FONT IMPORTS === */
+/* CARA MENGGANTI FONT: Ganti path di url() dengan lokasi font Anda */
+@font-face {
+    font-family: 'Pixellari';
+    src: url('public/assets/fonts/Pixellari.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Times New Romance';
+    src: url('public/assets/fonts/Times New Romance-Italic.otf') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Romance';
+    src: url('public/assets/fonts/Romance.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* === CSS VARIABLES === */
+/* CARA MENGGANTI WARNA UTAMA: Edit nilai di :root */
+:root {
+    --bg-dark: #0e0e12;
+    --pink-accent: #ff2e88;
+    --pink-soft: #ff6ba8;
+    --pink-dark: #d91c6e;
+    --purple-dark: #1a0a1e;
+    --text-light: #f0f0f0;
+    --text-gray: #a0a0a0;
+    --glow-pink: rgba(255, 46, 136, 0.4);
+    --particle-color: rgba(255, 100, 180, 0.15);
+    /* Cursor position variables */
+    --cursor-x: 0px;
+    --cursor-y: 0px;
+}
+
+/* === GLOBAL STYLES === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Pixellari', monospace;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
+    cursor: none;
+    /* Custom cursor - pink circle */
+    line-height: 1.6;
+}
+
+/* === CUSTOM CURSOR === */
+/* Pink glowing circle cursor - diperbesar jadi 30px biar lebih keliatan */
+body::before {
+    content: '';
+    position: fixed;
+    left: var(--cursor-x);
+    top: var(--cursor-y);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--pink-accent);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 30px var(--glow-pink);
+    opacity: 0.7;
+    transition: width 0.2s, height 0.2s;
+}
+
+/* === DUST PARTICLE CANVAS === */
+#dustCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* === LANDING PAGE === */
+.landing-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.landing-section.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.landing-content {
+    text-align: center;
+    z-index: 2;
+}
+
+.landing-title {
+    font-size: clamp(2rem, 8vw, 4rem);
+    color: var(--pink-accent);
+    text-shadow: 0 0 30px var(--glow-pink);
+    margin-bottom: 1rem;
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.landing-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    color: var(--text-gray);
+    margin-bottom: 3rem;
+}
+
+.enter-btn {
+    font-family: 'Pixellari', monospace;
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    color: var(--pink-accent);
+    border: 2px solid var(--pink-accent);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px var(--glow-pink);
+}
+
+.enter-btn:hover {
+    background: var(--pink-accent);
+    color: var(--bg-dark);
+    box-shadow: 0 0 40px var(--glow-pink);
+    transform: scale(1.05);
+}
+
+/* === MAIN CONTENT === */
+.main-content {
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+.main-content.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* === HERO SECTION === */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 10vw, 6rem);
+    color: var(--pink-accent);
+    text-shadow: 0 0 40px var(--glow-pink);
+    margin-bottom: 1rem;
+    animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.hero-date {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: var(--text-gray);
+}
+
+/* === SECTION STYLES === */
+section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--pink-accent);
+    text-align: center;
+    margin-bottom: 3rem;
+    text-shadow: 0 0 20px var(--glow-pink);
+}
+
+/* === TIMELINE SECTION === */
+.timeline-container {
+    display: grid;
+    gap: 3rem;
+}
+
+.memory-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    background: rgba(255, 46, 136, 0.05);
+    border: 1px solid rgba(255, 46, 136, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.memory-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.memory-card:hover {
+    border-color: var(--pink-accent);
+    box-shadow: 0 0 30px var(--glow-pink);
+    transform: translateY(-5px);
+}
+
+.memory-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+}
+
+.memory-card:hover .memory-image img {
+    filter: brightness(1.1);
+}
+
+.memory-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.memory-title {
+    font-size: 1.5rem;
+    color: var(--pink-soft);
+    margin-bottom: 1rem;
+}
+
+.memory-caption {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-gray);
+}
+
+.highlight {
+    color: var(--pink-accent);
+    font-weight: bold;
+}
+
+/* === PONY TOWN SECTION === */
+.ponytown-section {
+    background: linear-gradient(135deg, var(--purple-dark) 0%, var(--bg-dark) 100%);
+    border-radius: 20px;
+    padding: 4rem 2rem;
+    margin: 4rem auto;
+}
+
+.pixel-title {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.ponytown-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.ponytown-image img {
+    width: 100%;
+    border-radius: 15px;
+    border: 3px solid var(--pink-accent);
+    box-shadow: 0 0 30px var(--glow-pink);
+    transition: transform 0.3s ease;
+}
+
+.ponytown-image img:hover {
+    transform: scale(1.05);
+}
+
+.ponytown-story {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+/* === MUSIC SECTION === */
+.music-player-container {
+    background: rgba(255, 46, 136, 0.05);
+    border: 1px solid rgba(255, 46, 136, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+.song-list {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.song-item {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 46, 136, 0.08);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.song-item:hover {
+    background: rgba(255, 46, 136, 0.15);
+    box-shadow: 0 0 20px var(--glow-pink);
+}
+
+.song-item.active {
+    border: 1px solid var(--pink-accent);
+}
+
+.song-cover img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.song-info {
+    overflow: hidden;
+}
+
+.song-title {
+    font-size: 1rem;
+    color: var(--pink-soft);
+    margin-bottom: 0.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.song-artist {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+}
+
+.song-play-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--pink-accent);
+    color: var(--bg-dark);
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.song-play-btn:hover {
+    box-shadow: 0 0 20px var(--glow-pink);
+    transform: scale(1.1);
+}
+
+/* === PLAYER CONTROLS === */
+.player-controls {
+    background: rgba(255, 46, 136, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.now-playing {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.now-playing-cover img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+#currentTitle {
+    font-size: 1.1rem;
+    color: var(--pink-soft);
+    margin-bottom: 0.3rem;
+}
+
+#currentArtist {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+/* === EQUALIZER ANIMATION === */
+.equalizer {
+    display: flex;
+    gap: 4px;
+    align-items: flex-end;
+    height: 30px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.equalizer.active {
+    opacity: 1;
+}
+
+.eq-bar {
+    width: 4px;
+    background: var(--pink-accent);
+    border-radius: 2px;
+    animation: eq-bounce 0.8s ease-in-out infinite;
+}
+
+.eq-bar:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.eq-bar:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.eq-bar:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.eq-bar:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+@keyframes eq-bounce {
+
+    0%,
+    100% {
+        height: 10px;
+    }
+
+    50% {
+        height: 30px;
+    }
+}
+
+.player-main {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--pink-accent);
+    color: var(--bg-dark);
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.control-btn:hover {
+    box-shadow: 0 0 30px var(--glow-pink);
+    transform: scale(1.1);
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+#currentTime,
+#duration {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    min-width: 40px;
+}
+
+.progress-bar {
+    position: relative;
+    flex: 1;
+    height: 6px;
+    background: rgba(255, 46, 136, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--pink-accent);
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+#progressSlider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* === LETTER SECTION === */
+.letter-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.letter-paper {
+    background: rgba(255, 46, 136, 0.05);
+    border: 2px solid rgba(255, 46, 136, 0.2);
+    border-radius: 15px;
+    padding: 3rem;
+    box-shadow: 0 0 40px rgba(255, 46, 136, 0.1);
+}
+
+.letter-para {
+    font-family: 'Times New Romance', serif;
+    font-size: 1.1rem;
+    line-height: 2;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    text-align: justify;
+}
+
+.letter-para-1 {
+    /* Typewriter effect applied via JS */
+    border-right: 2px solid var(--pink-accent);
+    white-space: pre-wrap;
+    overflow: hidden;
+}
+
+.letter-para-2 {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease;
+}
+
+.letter-para-2.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === HIDDEN MESSAGE === */
+.hidden-section {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.reveal-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 46, 136, 0.1);
+    color: var(--pink-accent);
+    border: 2px solid var(--pink-accent);
+    font-size: 2rem;
+    font-family: 'Pixellari', monospace;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reveal-btn:hover {
+    background: var(--pink-accent);
+    color: var(--bg-dark);
+    box-shadow: 0 0 40px var(--glow-pink);
+    transform: scale(1.1);
+}
+
+.hidden-message {
+    max-width: 600px;
+    margin: 2rem auto 0;
+    padding: 2rem;
+    background: rgba(255, 46, 136, 0.1);
+    border: 2px solid var(--pink-accent);
+    border-radius: 15px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.5s ease;
+    pointer-events: none;
+}
+
+.hidden-message.revealed {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 50px var(--glow-pink);
+}
+
+.secret-text {
+    font-size: 1.2rem;
+    line-height: 1.9;
+    color: var(--text-light);
+}
+
+/* === SIGNATURE === */
+.signature {
+    font-family: 'Romance', cursive;
+    font-size: 2.5rem;
+    color: var(--pink-accent);
+    text-align: right;
+    padding: 3rem 4rem;
+    text-shadow: 0 0 20px var(--glow-pink);
+}
+
+/* === ANIMATIONS === */
+@keyframes glow-pulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 20px var(--glow-pink);
+    }
+
+    50% {
+        text-shadow: 0 0 40px var(--glow-pink);
+    }
+}
+
+/* Fade-up animation for scroll */
+[data-animate="fade-up"] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+[data-animate="fade-up"].visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+[data-animate="fade-in"] {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+[data-animate="fade-in"].visible {
+    opacity: 1;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+
+    .memory-card,
+    .ponytown-content {
+        grid-template-columns: 1fr;
+    }
+
+    .player-main {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .progress-container {
+        width: 100%;
+    }
+
+    .letter-paper {
+        padding: 2rem 1.5rem;
+    }
+
+    .signature {
+        font-size: 2rem;
+        padding: 2rem;
+    }
+
+    .song-item {
+        grid-template-columns: 50px 1fr auto;
+    }
+
+    .song-cover img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 3rem 1rem;
+    }
+
+    .landing-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .memory-card {
+        padding: 1.5rem;
+    }
+
+    .letter-para {
+        font-size: 1rem;
+    }
+}
+
+/* === SMOOTH SCROLLBAR === */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--pink-accent);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--pink-soft);
+}

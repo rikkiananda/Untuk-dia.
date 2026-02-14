@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Memories ♡</title>
+    <meta name="description" content="A personal archive of our love story">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Dust Particle Canvas Background -->
+    <canvas id="dustCanvas"></canvas>
+
+    <!-- Landing Page -->
+    <section id="landing" class="landing-section active">
+        <div class="landing-content">
+            <h1 class="landing-title">Our Digital Archive</h1>
+            <p class="landing-subtitle">A collection of pixels, memories, and love</p>
+            <button id="enterBtn" class="enter-btn">Enter Our Memories</button>
+        </div>
+    </section>
+
+    <!-- Main Content (Hidden Initially) -->
+    <div id="mainContent" class="main-content">
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">Rikki & Shafa</h1>
+            <p class="hero-date">Since 30 September 2024</p>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="timeline-section">
+            <h2 class="section-title">Our Timeline</h2>
+            <div class="timeline-container">
+
+                <!-- Memory 1: First Contact -->
+                <div class="memory-card" data-animate="fade-up">
+                    <div class="memory-image">
+                        <!-- CARA MENGGANTI FOTO: Ganti src dengan path foto Anda di public/assets/images/ -->
+                        <!-- Contoh: src="public/assets/images/foto1.jpg" -->
+                        <img src="public/assets/images/WhatsApp Image 2026-02-14 at 3.54.32 PM.jpeg"
+                            alt="First contact on Telegram">
+                    </div>
+                    <div class="memory-content">
+                        <h3 class="memory-title">30 September 2024</h3>
+                        <p class="memory-caption">
+                            Hari pertama kita bertukar sapa di <span class="highlight">Telegram</span>.
+                            Siapa sangka pesan sederhana itu akan jadi awal dari segalanya,Dan ini salah satu chat kamu
+                            yang aku suka banget
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Memory 2: Pony Town -->
+                <div class="memory-card" data-animate="fade-up">
+                    <div class="memory-image">
+                        <!-- CARA MENGGANTI FOTO: Ganti src dengan path foto Anda -->
+                        <img src="public/assets/images/Screenshot 2025-03-17 175806.png" alt="Pony Town memories">
+                    </div>
+                    <div class="memory-content">
+                        <h3 class="memory-title">I leave valo just for this game?</h3>
+                        <p class="memory-caption">
+                            Di <span class="highlight">Pony Town</span>, dunia pixel tempat kita berbagi tawa,
+                            cerita, dan momen-momen kecil yang tak terlupakan.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Memory 3: Placeholder -->
+                <div class="memory-card" data-animate="fade-up">
+                    <div class="memory-image">
+                        <!-- CARA MENGGANTI FOTO: Ganti src dengan path foto Anda -->
+                        <img src="public/assets/images/Screenshot 2025-03-17 175816.png" alt="Another memory">
+                    </div>
+                    <div class="memory-content">
+                        <h3 class="memory-title">Kita berdua keliatan unploy banget yh</h3>
+                        <p class="memory-caption">
+                            Ntah lah sayang, aku ngerasa disitu juga kita waktu waktu asiknya
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Memory 4: Placeholder -->
+                <div class="memory-card" data-animate="fade-up">
+                    <div class="memory-image">
+                        <!-- CARA MENGGANTI FOTO: Ganti src dengan path foto Anda -->
+                        <img src="public/assets/images/Screenshot 2025-03-24 172032.png" alt="Another memory">
+                    </div>
+                    <div class="memory-content">
+                        <h3 class="memory-title">Hari aku merasa ada gunanya</h3>
+                        <p class="memory-caption">
+                            Andai aja rumah itu ga hilang njirt
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Pony Town Section -->
+        <section id="ponytown" class="ponytown-section">
+            <div class="ponytown-container">
+                <h2 class="section-title pixel-title">Pony Town Chronicles</h2>
+                <div class="ponytown-content">
+                    <div class="ponytown-image">
+                        <!-- CARA MENGGANTI FOTO: Ganti src dengan screenshot Pony Town Anda -->
+                        <img src="public/assets/images/Screenshot 2025-03-28 154703.png" alt="Pony Town Screenshot">
+                    </div>
+                    <div class="ponytown-text">
+                        <p class="ponytown-story">
+                            Pony town game aneh,aku ga suka jujur,Tapi disitu ada kamu saat itu yang buat aku menjadi
+                            suka dengan
+                            game yang seperti itu. Iloveyou babe
+                        </p>
+                        <p class="ponytown-story">
+                            Karena game itu aku sedikit tau tentang kamu sedikit,hanya dikit,dikit aja jangan ke pd an
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Music Section -->
+        <section id="music" class="music-section">
+            <h2 class="section-title">Our Playlist</h2>
+            <div class="music-player-container">
+
+                <!-- Song List -->
+                <div class="song-list">
+
+                    <!-- Song 1 -->
+                    <!-- CARA MENGGANTI LAGU: 
+                         1. Letakkan file MP3 di public/assets/music/
+                         2. Ganti data-src dengan nama file
+                         3. Ganti cover art di src (atau gunakan cover default)
+                         4. Ganti judul dan artist
+                    -->
+                    <div class="song-item" data-src="public/assets/music/song1.mp3">
+                        <div class="song-cover">
+                            <img src="public/assets/images/damocles-cover.jpg" alt="Damocles Cover">
+                        </div>
+                        <div class="song-info">
+                            <h3 class="song-title">Damocles</h3>
+                            <p class="song-artist">Sleep Token</p>
+                        </div>
+                        <button class="song-play-btn">▶</button>
+                    </div>
+
+                </div>
+
+                <!-- Audio Player Controls -->
+                <div class="player-controls">
+                    <div class="now-playing">
+                        <div class="now-playing-cover">
+                            <img id="currentCover" src="public/assets/images/damocles-cover.jpg" alt="Current Song">
+                        </div>
+                        <div class="now-playing-info">
+                            <h4 id="currentTitle">[Pilih Lagu]</h4>
+                            <p id="currentArtist">[Artist]</p>
+                        </div>
+                        <!-- Equalizer Animation -->
+                        <div class="equalizer" id="equalizer">
+                            <span class="eq-bar"></span>
+                            <span class="eq-bar"></span>
+                            <span class="eq-bar"></span>
+                            <span class="eq-bar"></span>
+                        </div>
+                    </div>
+
+                    <div class="player-main">
+                        <button id="playPauseBtn" class="control-btn">▶</button>
+                        <div class="progress-container">
+                            <span id="currentTime">0:00</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                                <input type="range" id="progressSlider" min="0" max="100" value="0">
+                            </div>
+                            <span id="duration">0:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden Audio Element -->
+                <audio id="audioPlayer"></audio>
+
+            </div>
+        </section>
+
+        <!-- Letter Section -->
+        <section id="letter" class="letter-section">
+            <h2 class="section-title">A Letter For You</h2>
+            <div class="letter-container">
+                <div class="letter-paper">
+
+                    <!-- Paragraph 1: Typewriter Effect -->
+                    <p class="letter-para letter-para-1" id="typewriterText"></p>
+
+                    <!-- Paragraph 2: Fade-in -->
+                    <p class="letter-para letter-para-2" data-animate="fade-in">
+                        Shafa, mengingat kembali ke tanggal 30 September 2024 saat kita pertama kali bertukar sapa di
+                        Telegram, hingga momen-momen sederhana kita di dunia pixel Pony Town, aku sadar tak ada satu pun
+                        manusia di bumi ini yang bisa memberiku rasa nyaman sedalam yang kamu beri. Jika kuingat saat
+                        kita akhirnya memutuskan bersama di bulan Mei (maafkan aku ya sayang, jika ingatanku sedikit
+                        keliru soal bulannya), hal yang paling membuatku takjub—sekaligus sering membuatku insecure
+                        adalah kesabaranmu yang begitu luas untukku, di saat aku merasa belum bisa melakukan hal hebat
+                        yang setara untukmu. Lewat tulisan ini, aku ingin meminta maaf dari lubuk hatiku yang terdalam
+                        atas segala kekuranganku, terutama keadaan ekonomiku saat ini yang belum memungkinkanku untuk
+                        memberikan banyak hal lebih untukmu. Dulu, aku sempat menahan diri untuk menjadikanmu kekasihku
+                        bukan karena tak cinta, tapi justru karena rasaku begitu besar hingga aku takut mengecewakanmu,
+                        namun nyatanya aku benar-benar tak bisa melangkah tanpamu. Ini bukan sekadar omong kosong atau
+                        kalimat berlebihan, tapi mataku sudah benar-benar tertutup untuk perempuan lain, karena di
+                        hidupku sekarang hanya ada satu nama yang paling indah; Shafa, aku sangat menyayangimu.
+                    </p>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Hidden Message Section -->
+        <section id="hidden" class="hidden-section">
+            <button id="revealBtn" class="reveal-btn">?</button>
+            <div id="hiddenMessage" class="hidden-message">
+                <p class="secret-text">
+                    Aku harap kamu ga sedih kalau kita bukanlah jodoh yang semestinya, eh malah gua yang kepd an jirt
+                </p>
+            </div>
+        </section>
+
+        <!-- Signature -->
+        <div class="signature">
+            Rikki dan Shafa
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
